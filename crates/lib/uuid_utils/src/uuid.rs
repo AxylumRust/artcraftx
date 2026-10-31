@@ -1,11 +1,11 @@
 use uuid::Uuid;
 
 /// Generate a 36 character hyphenated UUID (v4) that can be used as an idempotency token.
+#[must_use]
 pub fn generate_random_uuid() -> String {
   let uuid = Uuid::new_v4();
   let mut buffer = Uuid::encode_buffer();
-  let hyphenated_uuid = uuid.hyphenated()
-      .encode_lower(&mut buffer);
+  let hyphenated_uuid = uuid.hyphenated().encode_lower(&mut buffer);
   hyphenated_uuid.to_string()
 }
 
@@ -28,7 +28,7 @@ mod tests {
     #[test]
     fn hyphenated() {
       for _ in 0..10 {
-        assert_eq!(generate_random_uuid().contains("-"), true);
+        assert!(generate_random_uuid().contains('-'));
       }
     }
 
