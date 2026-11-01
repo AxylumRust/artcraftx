@@ -1,7 +1,6 @@
 use uuid::Uuid;
 
 /// Generate a 36 character hyphenated UUID (v4) that can be used as an idempotency token.
-#[must_use]
 pub fn generate_random_uuid() -> String {
   let uuid = Uuid::new_v4();
   let mut buffer = Uuid::encode_buffer();
